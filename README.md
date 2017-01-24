@@ -19,8 +19,8 @@ The data had no meaning in terms of correlation as the words in the tweets were 
 #### Skewed Data: 
 The tweets in the romney training dataset was skewed in the context that many of them were neutral in their sentiment (class 0). When dealing with highly skewed data we observed that the typical feature selection methods like information gain etc., leads to mostly selecting features for the minor class, hence considerably affecting the classification performance. 
 To deal with this, we employed two methods to improve the classifiers performance.
-1.	Over sampling the minor class: This considerably improved the accuracy of the prediction from about 49% to 64%. This was a major boost in improving performance of the classifier, especially for the Romney dataset.
-2.	Under sample the major class: This did not affect the classifier performance as much as the over-sampling did, as probably some of the important features were removed from being selected because of this.
+1. Over sampling the minor class: This considerably improved the accuracy of the prediction from about 49% to 64%. This was a major boost in improving performance of the classifier, especially for the Romney dataset.
+2. Under sample the major class: This did not affect the classifier performance as much as the over-sampling did, as probably some of the important features were removed from being selected because of this.
 Additional measures were taken to remove the redundancy and noise in the data while sampling as per tweets.
 ## Preprocessing:
 ### Feature Selection:
@@ -37,22 +37,29 @@ Below are the various models that I employed for classification of the tweets:
 - Logistic Regression
 - Random Forest Classifier
 - Adaboost Classifier
+
 ## Parameter Tuning:
+
 ### Manual Tweaking (by trial):
 Manually tried several parameters (say like ngrams or smoothing parameter for MultinomialNB or a penalty parameter alpha for SGD classifier) for individual models to see how that affects the classifier performance.
+
 ### Grid Search:
 I used an exhaustive search for parameter tuning to select optimal parameters that give best performance of our model where we search on a range of parameters to tune the hyperparameters that best suit the classifiers.
+
 ### Additional optimizations
 • built pipelines using the vectorizer, transformer and classifiers to fit, transform and train our model, making it concise, and single purposed.
 • As the feature selection, cleaning tweets, running pipelines for different models, cross-validation and grid search for optimal parameters is heavily computational intensive, I made use of pickling, so that processed data can be written to flat files on disk and can be read from that.
 • Also, used flags to turn pickling on/off, and also one for turning cross-validation on/off.
 • can automate abstract pipeline to extend numerous classifiers.
+
 ## Evaluation metrics and results:
+
 ### Metrics 
 1. Accuracy
 2. Precision
 3. Recall
 4. F-score
+
 ### Results:
 Below are the results using the performance metrics mentioned above for Romney and Obama. Also specified are the Classifier names and the hyperparameters used for each.
 SVC (C=1, cache_size=200, class_weight=None, coef0=0.0, decision_function_shape=None, degree=3, gamma='auto', kernel='linear', max_iter=-1, probability=False, random_state=None, shrinking=True, tol=0.001, verbose=False)
