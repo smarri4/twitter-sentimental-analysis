@@ -24,35 +24,35 @@ To deal with this, we employed two methods to improve the classifiers performanc
 Additional measures were taken to remove the redundancy and noise in the data while sampling as per tweets.
 ## Preprocessing:
 ### Feature Selection:
-“Bag of words” model was considered in feature selection where a corpus was formed from all the tweets in the training data and specific words or idioms were selected as features from those. Three different methods of feature selection were tried to analyze and see how these schemes were selecting features for a common classifier. These are a Bag of N-grams representation in the form of a vectorizer.
-1.	Term counts:  Here we tokenize the tweets and give an integer for each possible token (white spaces as separators). Each individual token occurrence frequency in each tweet is treated as a feature. Vector of all frequencies for a given tweet is considered a sample. This representation will be sparse as the tweets will be using only a very small subset of words from the corpus.
-2.	Hashing (based on counts): This is much similar method to the above one based on term counts, but it uses a hashing trick that holds an in-memory mapping of the tokens.
-3.	Term frequency-Inverse Document Frequency(TF-IDF): This method of feature vector representation was more effective, as it weighs the words that are selected as features per their importance based on the frequency of occurrence in tweets using inverse document frequency.
+*“Bag of words”* model was considered in feature selection where a corpus was formed from all the tweets in the training data and specific words or idioms were selected as features from those. Three different methods of feature selection were tried to analyze and see how these schemes were selecting features for a common classifier. These are a Bag of N-grams representation in the form of a vectorizer.
+1. **Term counts**:  Here we tokenize the tweets and give an integer for each possible token (white spaces as separators). Each individual token occurrence frequency in each tweet is treated as a feature. Vector of all frequencies for a given tweet is considered a sample. This representation will be sparse as the tweets will be using only a very small subset of words from the corpus.
+2. **Hashing** (based on counts): This is much similar method to the above one based on term counts, but it uses a hashing trick that holds an in-memory mapping of the tokens.
+3. **Term frequency-Inverse Document Frequency**(TF-IDF): This method of feature vector representation was more effective, as it weighs the words that are selected as features per their importance based on the frequency of occurrence in tweets using inverse document frequency.
 ### Training and Classification:
 During the training phase, I used10-fold cross validation give us a measure of classifier performance on training data so that it doesn’t overfit on training dataset.
 Below are the various models that I employed for classification of the tweets:
--	Multinomial Naïve Bayes
--	Support Vector Machine
--	SGD (Stochastic gradient descent)
--	Logistic Regression
--	Random Forest Classifier
--	Adaboost Classifier
+- Multinomial Naïve Bayes
+- Support Vector Machine
+- SGD (Stochastic gradient descent)
+- Logistic Regression
+- Random Forest Classifier
+- Adaboost Classifier
 ## Parameter Tuning:
 ### Manual Tweaking (by trial):
 Manually tried several parameters (say like ngrams or smoothing parameter for MultinomialNB or a penalty parameter alpha for SGD classifier) for individual models to see how that affects the classifier performance.
 ### Grid Search:
 I used an exhaustive search for parameter tuning to select optimal parameters that give best performance of our model where we search on a range of parameters to tune the hyperparameters that best suit the classifiers.
 ### Additional optimizations
-•	built pipelines using the vectorizer, transformer and classifiers to fit, transform and train our model, making it concise, and single purposed.
-•	As the feature selection, cleaning tweets, running pipelines for different models, cross-validation and grid search for optimal parameters is heavily computational intensive, I made use of pickling, so that processed data can be written to flat files on disk and can be read from that.
-•	Also, used flags to turn pickling on/off, and also one for turning cross-validation on/off.
-•	can automate abstract pipeline to extend numerous classifiers.
+• built pipelines using the vectorizer, transformer and classifiers to fit, transform and train our model, making it concise, and single purposed.
+• As the feature selection, cleaning tweets, running pipelines for different models, cross-validation and grid search for optimal parameters is heavily computational intensive, I made use of pickling, so that processed data can be written to flat files on disk and can be read from that.
+• Also, used flags to turn pickling on/off, and also one for turning cross-validation on/off.
+• can automate abstract pipeline to extend numerous classifiers.
 ## Evaluation metrics and results:
 ### Metrics 
-1.	Accuracy
-2.	Precision
-3.	Recall
-4.	F-score
+1. Accuracy
+2. Precision
+3. Recall
+4. F-score
 ### Results:
 Below are the results using the performance metrics mentioned above for Romney and Obama. Also specified are the Classifier names and the hyperparameters used for each.
 SVC (C=1, cache_size=200, class_weight=None, coef0=0.0, decision_function_shape=None, degree=3, gamma='auto', kernel='linear', max_iter=-1, probability=False, random_state=None, shrinking=True, tol=0.001, verbose=False)
