@@ -151,4 +151,4 @@ Prediction accuracy of Romney on test data:  0.607462226334
 |    1     |    0.46         |    0.38      |    0.42           |    768        |
 
 ## Conclusion:
-Given above are the set of models on which data is trained and evaluated. After assessing all the models, I found SVM giving best results for Romney data and MultinomiaNB for Obama.
+Given above are the set of models on which data is trained and evaluated. After assessing all the models, SVM was found to give best results for Romney data(Which was mostly skewed) and MultinomiaNB for Obama.
